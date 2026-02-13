@@ -15,6 +15,7 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
     <!-- STYLESHEETTS   -->
     <link rel="stylesheet" href="main-page.css">
+    <link rel="stylesheet" href="feedback.css">
     <link rel="stylesheet" href="utility.css">
 </head>
 
@@ -28,6 +29,7 @@
                     </a>
                 </div>
             </div>
+            
             <div class="right-nav">
                 <div class="nav-input">
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -39,20 +41,22 @@
                         <li ><a href="shop.html" id="shop" class="nav-buttons">Shop</a></li>
                     </ul>
                     <ul class=" flex">
+                        <li><a href="#feedback" onclick="visibleFeedback()">Feedback</a></li>
                         <li><a href="Login.html" id="login" class="nav-buttons">Login</a></li>
                         <i class="fa-solid fa-cart-shopping"></i>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="nav-spacer"></div>
+         <div class="nav-spacer"></div> <!-- As nav has fixed property so some space is required to shift the content of website down -->
     </header>
-    <section class="favProducts ">
+    
+     <section class="favProducts "> <!--appear when the user interact with heart btn on product card -->
         <div class="favProducts-hide">
 
         </div>
     </section>
-    <section class="product-onclick">
+    <section class="product-onclick"> <!--appear when the user click on product card -->
         <div class="product-onclick-div flex">
             <div class="product-onclick-l-con flex">
                 <div class="img"></div>
@@ -87,7 +91,7 @@
                     <div onclick="DeIncInput(this)" class="deinc-box">
 
                     </div>
-                    <input type="text" id="inc-deinc-input" class="inc-deinc-input" value=1>
+                    <input type="text" id="inc-deinc-input" class="inc-deinc-input" value=1 >
                     <div onclick="IncInput()" class="inc-box">
 
                     </div>
@@ -99,7 +103,7 @@
             </div>
         </div>
     </section>
-     <section class="cart-section cart-section-hide">
+     <section class="cart-section cart-section-hide"> <!--appear when the user interact with cart btn -->
         <button onclick="FinalizeFunc(this)" class="cart-btn btn">Finalize</button>
         <div class="cart">
             <div class="cart-card">
@@ -112,7 +116,7 @@
                         <div class="name"></div>
                     </div>
                     <div class="cart-company flex">
-                         <div>Company Name: </div>
+                         <div>Brand Name: </div>
                         <div class="company"></div>
                     </div>
                     <div class="cart-price flex">
@@ -165,11 +169,11 @@
             <!-- <div class="hero-blur "></div> -->
         </section> 
             <!--featred deals -->
-           <section class="tag-section" style="display: none;">
+           <section class="tag-section  " style="display: none;">
 
             <div class="tag">
                 <div class="tag-image-con">
-                    <div>zero</div>
+                    <div>zero</div> <!--  this is the input taken by deals-section to fetch the products from products.js -->
                     <div>MAKE YOU BEAUTIFUL</div>
                     <div>TRENDING NOW</div>
                     <div>TRENDING NOW</div>
@@ -182,28 +186,6 @@
         </section>
         <section class="deals-section ">
             <div class="deals-container">
-                <div class="deal-card" onclick="productDes(this)">
-                    <img src="" alt="">
-                    <div class="deal-hidden" style="display: none;">
-                        <div></div>
-                        <span></span>
-                    </div>
-                    <span class="off">
-
-                    </span>
-                    <i class="fa-solid fa-heart white-heart" onclick="redHeart(event,this)"></i>
-                    <div class="deal-name"></div>
-                    <div class="deal-price flex">
-                        <span class="cut-price"
-                            style="text-decoration: line-through; color: #b12704 ;"><sup>PKR</sup><span>
-
-                            </span></span>
-                        <span class="rem-price"><sup>PKR</sup><span>
-
-                            </span></span>
-                    </div>
-                </div>
-
             </div>
         </section>
         <!-- TRENDING SECTION -->
@@ -211,7 +193,7 @@
 
             <div class="tag">
                 <div class="tag-image-con">
-                    <div>TRENDING</div>
+                    <div>TRENDING</div> <!--  this is the input taken by deals-section to fetch the products from products.js -->
                     <div>MAKE YOU BEAUTIFUL</div>
                     <div>TRENDING NOW</div>
                     <div>TRENDING NOW</div>
@@ -250,13 +232,13 @@
     </main>
     <!-- FOOTER -->
     <footer>
-       <section class="feedback-section">
-         <div class=" feedback-btn-p flex  ">
+       <section class="feedback-section" >
+         <div class=" feedback-btn-p flex" >
             <p>We'd love to hear what you think!</p>
             <button class="btn" onclick="visibleFeedback()">Give feedback</button>
         </div>
-            <div class="feedback ">
-                 <div class="feedback-con flex">
+            <div class="feedback" id="feedback">
+                 <div class="feedback-con flex" >
                     <div class="left-feedback flex">
                         <div class="left-feedback-img"></div>
                     </div>

@@ -1,14 +1,15 @@
 
 //Getting search query
 let NavInput = document.querySelector("#navbar-input");
-let NavBarSearch = localStorage.getItem("searchKeyword");
-let searchKeyWord =  NavInput.value = NavBarSearch;
+let searchKeyWord = localStorage.getItem("searchKeyword");
+
 let searchProducts = [];
 let dealSection = document.querySelector(".deals-section");
 let productDisplay = document.querySelector(".deal-card");
 searchProductFinder();
 
 let searchIcon = document.querySelector(".fa-magnifying-glass");
+
 //Searching when on Search Page By Clicking on Icon
 searchIcon.addEventListener("click",e=>{
     searchProducts = []; 
@@ -33,14 +34,15 @@ function searchProductFinder(){
         if( typeof element === "string"){
              if(element.toLowerCase().trim().replace(/\s+/g,'').includes(searchKeyWord)){
                 if(!searchProducts.includes(obj)){
-                    searchProducts.push(obj)
+                    
+                    searchProducts.push(obj);
                  }
             }   
         }
              
     }
-});
-//Showing searched products
+    });
+    //Showing searched products
 
 dealSection.innerHTML = "";
 if(searchProducts.length > 0){

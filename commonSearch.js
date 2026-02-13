@@ -20,10 +20,11 @@ function redHeart(e, heart) {
     document.querySelector(".favProducts").querySelector("div").classList.add("favProducts-show");
     document.querySelector(".favProducts").querySelector("div").classList.remove("favProducts-hide");
     if (heart.classList.contains("red-heart")) {
-        document.querySelector(".favProducts").querySelector("div").innerHTML = "Add To Favorites";
+        document.querySelector(".favProducts").querySelector("div").innerHTML = "Added To Favorites";
     } else {
         document.querySelector(".favProducts").querySelector("div").innerHTML = "Removed From Favorites";
     }
+    // favProduct section disappearing transitiion 
     setTimeout(() => {
         document.querySelector(".favProducts").querySelector("div").innerHTML = "";
         document.querySelector(".favProducts").classList.remove("favProducts-style");
@@ -40,12 +41,15 @@ let productClickChild = productClick.querySelector(".product-onclick-div");
 let productClickLeftImg = productClick.querySelector(".product-onclick-l-con").querySelector(".img");
 let productClickRight = productClick.querySelector(".product-onclick-r-con");
 let IncDeincInput = document.querySelector("#inc-deinc-input");
+
 function productDes(productDisplay2) {
     productClick.classList.add("product-onclick-toggle");
     document.body.style.overflow = "hidden";
     //Adding Style to Left and Right Boxes
     productClick.querySelector(".product-onclick-l-con").classList.add("product-onclick-l-con-style");
     productClick.querySelector(".product-onclick-r-con").classList.add("product-onclick-r-con-style");
+
+
 
     //Fetching Data
 
@@ -55,7 +59,7 @@ function productDes(productDisplay2) {
     // productClickLeftImg.style.backgroundImage = `url(${temObj.src})`; This one is not working, it should be.
     productClickLeftImg.style.backgroundImage = `url(${src})`;
     productClickRight.querySelector("h3").innerText = temObj.name.toUpperCase();
-    productClickRight.querySelector(".company-title").innerText = "Company Name: ";
+    productClickRight.querySelector(".company-title").innerText = "Brand Name: ";
     productClickRight.querySelector(".company-name").innerText = temObj.companyName;
     if (temObj.off) {
         productClickRight.querySelector(".price-title").closest(".company-con").style.left = "-17px";
@@ -85,13 +89,19 @@ function productDes(productDisplay2) {
     productClickRight.querySelector(".onclick-btn").innerText = "Add To Cart ";
     
 }
+    //Stoping Propogation of Child to Parent 
+    //when onclick section opens the user interaction on center boc doesnot interact with the blur black box
+productClickChild.addEventListener("click", e => {
+    e.stopPropagation();
+})
+
 // Increment and Decrement in Products Quantity
 function IncInput() {
     document.querySelector(".deinc-box").style.color = "#dddddd";
     IncDeincInput.value = Number(IncDeincInput.value) + 1;
 }
 function DeIncInput(e) {
-    if (Number(IncDeincInput.value) > 0)
+    if (Number(IncDeincInput.value) > 1)
         IncDeincInput.value = Number(IncDeincInput.value) - 1;
     else
         e.style.color = "gray";
@@ -104,8 +114,8 @@ if (userData) {
         let loginBtn = document.querySelector("#login");
         loginBtn.innerText = userData.name;
         loginBtn.style.color = "white";
-        loginBtn.style.pointerEvents = "none";
-        loginBtn.style.userSelect = "none";
+        loginBtn.style.pointerEvents = "none"; //user can neither click nor select
+        loginBtn.style.userSelect = "none"; //user can click but not select
     }
 }
 //Add to CArt Btn working of upper animation and Taking to login page
@@ -119,23 +129,27 @@ function addToCart(cartBtn) {
             loginBtn.style.userSelect = "none";
             //Upper animated Box Appeared to Show items are added to cart
             document.querySelector(".favProducts").classList.add("favProducts-style");
+
             document.querySelector(".favProducts").querySelector("div").classList.add("favProducts-show");
             document.querySelector(".favProducts").querySelector("div").classList.remove("favProducts-hide");
+            
             if (Number(IncDeincInput.value) > 0) {
                 document.querySelector(".favProducts").querySelector("div").innerHTML = "ADDED TO CART";
                 //Have taken value from inputCountStorage div, and used in this function
-                let temObj = JSON.parse(cartBtn.previousElementSibling.innerText);
+                let currentProductInfo = JSON.parse(cartBtn.previousElementSibling.innerText);
                 //Type of IncDeincInput.value is string, therefore
-                temObj.count = Number(IncDeincInput.value);
-                //Finding whether obj in array is similar to cureent one, if it is then add the count
-                let MatchingObj = ProductsOnAddToCArt.find(e => e.name === temObj.name ); //if find then put in MatchingObj
-                    if(MatchingObj){
-                        MatchingObj.count += temObj.count; 
+                currentProductInfo.count = Number(IncDeincInput.value);
+                //This section will executed when the user reselect the products
+                //Finding whether items in ProductsOnAddToCArt is similar to current one, if it is then add the count
+                // in the first execution ProductsOnAddToCArt is empty (globaly) so no match found and the else will execute
+                
+                let MatchingProduct = ProductsOnAddToCArt.find(e => e.name === currentProductInfo.name ); //if find then put in MatchingProduct and change of value of matchingProduct also changes the count of productsOnAddToCart
+                    if(MatchingProduct){
+                        MatchingProduct.count += currentProductInfo.count; 
                     }
                     else{
-                        ProductsOnAddToCArt.push(temObj);
+                        ProductsOnAddToCArt.push(currentProductInfo);
                     }
-             //Declare at 165 line
                 
                 IncDeincInput.value = 1;
                 BoxClose();
@@ -160,10 +174,6 @@ function addToCart(cartBtn) {
 }
 
 
-//Stoping Propogation of Child to Parent
-productClickChild.addEventListener("click", e => {
-    e.stopPropagation();
-})
 
 //Increment and Decrement for CArt Section
 //multiple cards are displaying and have same id, so its not working, use this
@@ -189,13 +199,14 @@ function cartDeIncInput(e) {
         e.style.color = "gray";
 }
 //Click On Shopping Cart Icon
-let ProductsOnAddToCArt = [];
+let ProductsOnAddToCArt = []; //Global Declaration
 let cartIcon = document.querySelector(".fa-cart-shopping");
 let cartSection = document.querySelector(".cart-section");
 
 let cart = document.querySelector(".cart");
 let cartCard = document.querySelector(".cart-card");    //Dont copy innerHtml as it is a text
 //cart.innerHTML = ""; im moving it inside as i need to clean the section when icon is pressed
+
 cartIcon.addEventListener("click", e=>{
    if(ProductsOnAddToCArt.length > 0){
      cartSection.classList.toggle("cart-section-show");
@@ -246,8 +257,8 @@ cartSection.addEventListener("click",e=>{
 let finalValueArr = [];
 function FinalizeFunc(btn){
     let FCartSec = btn.closest(".cart-section");
-    let FCartCard = FCartSec.querySelectorAll(".cart-card");
-    FCartCard.forEach(card=>{
+    let FCartCards = FCartSec.querySelectorAll(".cart-card");
+    FCartCards.forEach(card=>{
      let FTotal = card.querySelector(".cart-total").querySelector(".total");
      finalValueArr.push(Number(FTotal.innerText));
     })
@@ -306,3 +317,20 @@ productClick.addEventListener("click", e => {
     document.body.style.overflow = "auto";
 })
 
+//Visible Feedback
+function visibleFeedback() {
+    let loginText =  document.getElementById("login").innerText.trim().toLowerCase();
+    if(loginText !== "login")
+    {
+        let feedback = document.getElementsByClassName("feedback");
+    feedback = feedback[0];
+    let feedbackBtnSec = document.getElementsByClassName("feedback-btn-p");
+    feedbackBtnSec = feedbackBtnSec[0];
+    feedback.classList.add("feedback-show");
+    feedbackBtnSec.classList.add("hide");
+    }
+    else
+        window.location.href = "Login.html";
+       
+    
+}

@@ -14,6 +14,7 @@
     <meta name="apple-mobile-web-app-title" content="PakKart" />
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
     <!-- STYLESHEETTS   -->
+     <link rel="stylesheet" href="feedback.css">
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="utility.css">
 </head>
@@ -39,6 +40,8 @@
                         <li><a href="shop.html"  class="nav-buttons"  >Shop</a></li>
                     </ul>
                     <ul class=" flex">
+                        <li><a href="#feedback" onclick="visibleFeedback()">Feedback</a></li>
+
                         <li><a href="Login.html" id="login" class="nav-buttons">Login</a></li>
                         <i class="fa-solid fa-cart-shopping" ></i>
                     </ul>
@@ -113,7 +116,7 @@
                         <div class="name"></div>
                     </div>
                     <div class="cart-company flex">
-                         <div>Company Name: </div>
+                         <div>Brand Name: </div>
                         <div class="company"></div>
                     </div>
                     <div class="cart-price flex">
@@ -174,7 +177,47 @@
     </main>
 
     <footer>
-
+          <section class="feedback-section" >
+         <div class=" feedback-btn-p flex" >
+            <p>We'd love to hear what you think!</p>
+            <button class="btn" onclick="visibleFeedback()">Give feedback</button>
+        </div>
+            <div class="feedback" id="feedback">
+                 <div class="feedback-con flex" >
+                    <div class="left-feedback flex">
+                        <div class="left-feedback-img"></div>
+                    </div>
+                    <div class="right-feedback">
+                        <form class="right-feedback-con flex" autocomplete="on">
+                        <div class="feedback-head flex">
+                            <div class="bold">Feedback Type</div>
+                            <select name="feedback-type" id="feedback-type">
+                                <option value="Bugs">Bugs</option>
+                                <option value="Ideas">Ideas</option>
+                                <option value="Questions">Questions</option>
+                                <option value="Feelings">Feelings</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="feedback-email flex">
+                            <span>Your <span class="bold">Name </span>(Optional)</span>
+                            <input type="email" name="email" id="fd-email" autocomplete="email" placeholder="Your Email"> 
+                            <span>Your Email (Optional)</span>
+                        </div>
+                        <div class="feedback-des flex">
+                            <span style="font-size: 12px;">Tell us more...</span>
+                            <textarea  name="description" id="fd-des"></textarea>
+                        </div>
+                        <label >
+                            <input type="checkbox" name="feedbackInform" id="feedback-checkbox" value="feedbackInform" >
+                            Allow us to contact you about your feedback 
+                        </label>
+                        <input type="button" name="button" id="fd-btn" value="SUBMIT FEEDBACK">
+                    </form>
+                    </div>
+                 </div> 
+            </div>
+       </section>
         <div class="main-footer">
             <div class="upper-footer-container">
                 <ul>
