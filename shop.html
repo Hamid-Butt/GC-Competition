@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PakKart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="PakKart" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <!-- STYLESHEETTS   -->
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="utility.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left-nav">
+                <div class="logo">
+                    <a href="mainpage.html">
+                        <img src="assets/nav/logo.png" width="275px" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="right-nav">
+                <div class="nav-input">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="navbar-input" placeholder=" Search the Products">
+                </div>
+                <div class="nav-buttons-con flex">
+                    <ul class=" flex">
+                        <li><a href="mainpage.html" id="home" class="nav-buttons">Home</a></li>
+                        <li><a href="shop.html" id="shop" class="home-line">Shop</a></li>
+                        <!-- home is not in nav-buttons cuz we want that home does not have line when other btns hovered -->
+                        <li><a href="collection.html" id="collections" class="nav-buttons">Collections</a></li>
+                    </ul>
+                    <ul class=" flex">
+                        <li><a href="Login.html" id="login" class="nav-buttons">Login</a></li>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-spacer"></div>
+    </header>
+    <section class="favProducts ">
+        <div class="favProducts-hide">
+
+        </div>
+    </section>
+    <section class="product-onclick">
+        <div class="product-onclick-div flex">
+            <div class="product-onclick-l-con flex">
+                <div class="img"></div>
+            </div>
+            <div class="product-onclick-r-con  flex">
+                <h3></h3>
+                <div class="flex company-con" style="gap: 40px; position: relative; left: -12px; ">
+                    <div class="company-title">
+                    </div>
+                    <div class="company-name">
+                    </div>
+                </div>
+                <div class="flex company-con" style="gap: 42px; position: relative; left: 9px;">
+                    <div class="discount-title">
+
+                    </div>
+                    <div class="discount-name">
+
+                    </div>
+                </div>
+                <div class="flex company-con" style="gap: 42px; position: relative;">
+                    <div class="price-title">
+                    </div>
+                    <div class="price-name">
+                    </div>
+                </div>
+
+                <div class="onclick-des">
+
+                </div>
+                <div class="flex inc-deinc-box">
+                    <div onclick="DeIncInput(this)" class="deinc-box">
+
+                    </div>
+                    <input type="text" id="inc-deinc-input" class="inc-deinc-input" value=1>
+                    <div onclick="IncInput()" class="inc-box">
+
+                    </div>
+                </div>
+                <div class="inputCountStorage" style="display: none;"></div>
+                <div onclick="addToCart(this)">
+                    <!-- Add to cart btn -->
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="cart-section cart-section-hide">
+        <button onclick="FinalizeFunc(this)" class="cart-btn btn">Finalize</button>
+        <div class="cart">
+            <div class="cart-card">
+                <div class="l-cart-card">
+                    <img src="" alt="">
+                </div>
+                <div class="r-cart-card">
+                    <div class="cart-name flex">
+                        <div>Product Name: </div>
+                        <div class="name"></div>
+                    </div>
+                    <div class="cart-company flex">
+                         <div>Company Name: </div>
+                        <div class="company"></div>
+                    </div>
+                    <div class="cart-price flex">
+                        <div>Price: </div>
+                        <div class="price flex" style="gap: 4px;"><sup>PKR</sup>
+                        <div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="flex cart-inc-deinc-box">
+                        <div onclick="cartDeIncInput(this)" class="cart-deinc-box">
+                            -
+                        </div>
+                        <input type="text" id="cart-input" class="cart-input">
+
+                        <div onclick="cartIncInput(this)" class="cart-inc-box">
+                            +
+                        </div>
+                    </div>
+                    <div class="cart-total">
+                        <div>Total Price: </div>
+                         <div class="flex" style="gap: 4px;">
+                            <sup>PKR </sup>
+                            <div class="total" ></div>
+                         </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+    </section>
+    <main>
+        <section class="hero">
+            <div class="hero-section">
+                <div class="hero-image-con">
+                    <div style="background-image: url('assets/hero-section/img1.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img2.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img4.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img5.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img3.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img7.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img6.jpg');"></div>
+                    <div style="background-image: url('assets/hero-section/img8.jpg');"></div>
+                </div>
+            </div>
+        </section>
+        <section class="tag-section tag-section-absolute beauty-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                    <div>BEAUTY</div>
+                    <div>MAKE YOU BEAUTIFUL</div>
+                    <div>ELEGANCE</div>
+                    <div>SELF-LOVE</div>
+                    <div>YOUR DAILY DOSE OF GLOW</div>
+                    <div>BEAUTY</div>
+                    <div>RADIENT</div>
+                    <div>SHINE CONFIDENTLY</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+                <div class="deal-card" onclick="productDes(this)">
+                    <img src="" alt="">
+                    <div class="deal-hidden" style="display: none;">
+                        <span></span>
+                    </div>
+                    <span class="off">
+
+                    </span>
+                    <i class="fa-solid fa-heart white-heart" onclick="redHeart(event,this)"></i>
+                    <div class="deal-name"></div>
+                    <div class="deal-price flex">
+                        <span class="cut-price"
+                            style="text-decoration: line-through; color: #b12704 ;"><sup>PKR</sup><span>
+
+                            </span></span>
+                        <span class="rem-price"><sup>PKR</sup><span>
+
+                            </span></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="tag-section automotive-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                     <div>AUTOMOTIVE</div>
+                    <div>PRECISION IN EVERY MOVE</div>
+                    <div>RELIABILITY</div>
+                    <div>EXPERT CARE FOR YOUR VEHICLE</div>
+                    <div>AUTOMOTIVE</div>
+                    <div>KEEPING YOU ROAD-READY</div>
+                    <div>INNOVATION</div>
+                    <div>YOUR CAR, OUR RESPONSIBLITY</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section electronics-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                     <div>ELECTRONICS</div>
+                    <div>THINK SMART,LIVE SMARTER</div>
+                    <div>DIGITAL</div>
+                    <div>ELECTRONICS</div>
+                    <div>FUTURE</div>
+                    <div>THE FUTURE STARTS HERE</div>
+                    <div>ADVANCED</div>
+                    <div>INNOVATION YOU CAN TRUST</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section fashion-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                     <div>FASHION</div>
+                    <div>STYLE THAT SPEAKS</div>
+                    <div>WEAR YOUR CONFIDENCE</div>
+                    <div>GLAM</div>
+                    <div>FASHION</div>
+                    <div>TREND</div>
+                    <div>MADE TO STAND OUT</div>
+                    <div>STYLE</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section sports-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                    <div>SPORTS</div>
+                    <div>PLAY WITH PASSION</div>
+                    <div>POWER</div>
+                    <div>UNLEASH YOUR POTENTIAL</div>
+                    <div>VICTORY</div>
+                    <div>SPORTS</div>
+                    <div>FUEL YOUR GAME</div>
+                    <div>STRENGTH</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section stationery-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                   <div>STATIONERY</div>
+                    <div>INSPIRE</div>
+                    <div>PLAN BETTER</div>
+                    <div>ORGANIZE</div>
+                    <div>STATIONERY</div>
+                    <div>IMAGINE</div>
+                    <div>EVERY DETAIL MATTERS</div>
+                    <div>BRING IDEAS TO LIFE</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section toys-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                   <div>TOYS</div>
+                    <div>WHERE FUN BEGINS</div>
+                    <div>EXPLORE</div>
+                    <div>JOY IN EVERY TOY</div>
+                    <div>TOYS</div>
+                    <div>GAMES FOR ENDLESS SMILES</div>
+                    <div>LEARN WHILE YOU PLAY</div>
+                    <div>CREATIVITY</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+        <section class="tag-section giftCard-tag">
+
+            <div class="tag">
+                <div class="tag-image-con">
+                    <div>GIFTCARDS</div>
+                    <div>A SMALL CARD, A BIG SMILE</div>
+                    <div>CELEBRATE</div>
+                    <div>SHOW SOMEONE YOU CARE</div>
+                    <div>GIFTCARDS</div>
+                    <div>JOY IN EVERY CARD</div>
+                    <div>SURPRISE</div>
+                    <div>GIVE THE PERFECT GIFT</div>
+                </div>
+            </div>
+        </section>
+        <section class="deals-section">
+            <div class="deals-container">
+
+
+            </div>
+        </section>
+
+    </main>
+    <footer>
+
+        <div class="main-footer">
+            <div class="upper-footer-container">
+                <ul>
+                    <li style="font-size: 16px; font-weight: bold; color: white;"> Get to Know Us</li>
+                    <li>Careers</li>
+                    <li>Blog</li>
+                    <li>About PakKart</li>
+                    <li>Investor Relations</li>
+                    <li>PakKart Devices</li>
+                    <li>PakKart Science</li>
+
+                </ul>
+                <ul>
+
+                    <li style="font-size: 16px; font-weight: bold; color: white;">Make Money with Us</li>
+                    <li>Sell products on PakKart</li>
+                    <li>Sell on PakKart Business</li>
+                    <li>Sell apps on PakKart</li>
+                    <li>Become an Affiliate</li>
+                    <li>Advertise Your Products</li>
+                    <li>Self-Publish with Us</li>
+                    <li>Host an PakKart Hub</li>
+                    <li>›See More Make Money with Us</li>
+                </ul>
+                <ul>
+                    <li style="font-size: 16px; font-weight: bold; color: white;">PakKart Payment Products</li>
+                    <li>PakKart Business Card</li>
+                    <li>Shop with Points</li>
+                    <li>Reload Your Balance</li>
+                    <li>PakKart Currency Converter</li>
+                </ul>
+                <ul>
+
+                    <li style="font-size: 16px; font-weight: bold; color: white;">Let Us Help You</li>
+                    <li>PakKart and COVID-19</li>
+                    <li>Your Account</li>
+                    <li>Your Orders</li>
+                    <li>Shipping Rates & Policies</li>
+                    <li>Returns & Replacements</li>
+                    <li>Manage Your Content and Devices</li>
+                    <li>Help</li>
+
+                </ul>
+
+            </div>
+            <div class="footer-social-con">
+                <div class="footer-social flex">
+                    <div class="footer-social-media"></div>
+                    <img src="assets/nav/logo.png" alt="logo" height="70">
+                    <div class="footer-cards"></div>
+                </div>
+            </div>
+        </div>
+        <div class="lower-footer-con">
+            <div class="lower-footer">
+                <div class="footer-content-con flex">
+                    <div>
+                        <h5>PakKart Music</h5>
+                        <p>Stream millions
+                            of songs</p>
+                    </div>
+                    <div>
+                        <h5>PakKart Business</h5>
+                        <p>Everything For
+                            Your Business</p>
+                    </div>
+                    <div>
+                        <h5>IMDbPro</h5>
+                        <p>Get Info Entertainment
+                            Professionals Need</p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+                        <h5>PakKart Ads</h5>
+                        <p>Reach customers
+                            wherever they
+                            spend their time</p>
+                    </div>
+                    <div>
+                        <h5>PakKartGlobal</h5>
+                        <p>Ship Orders
+                            Internationally</p>
+                    </div>
+                    <div>
+
+                        <h5>Kindle Direct Publishing</h5>
+                        <p>Indie Digital & Print Publishing
+                            Made Easy</p>
+                    </div>
+                    <div>
+
+                        <h5>eero WiFi</h5>
+                        <p>Stream 4K Video
+                            in Every Room</p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+
+                        <h5>6pm</h5>
+                        <p>Score deals
+                            on fashion brands</p>
+                    </div>
+                    <div>
+
+                        <h5>PakKart Web Services</h5>
+                        <p>Scalable Cloud
+                            Computing Services</p>
+                    </div>
+                    <div>
+                        <h5>Prime Video Direct</h5>
+                        <p>Video Distribution
+                            Made Easy</p>
+
+                    </div>
+                    <div>
+
+                        <h5>Blink</h5>
+                        <p>Smart Security
+                            for Every Home </p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+                        <h5> AbeBooks</h5>
+                        <p>Books, art
+                            & collectibles</p>
+                    </div>
+                    <div>
+
+                        <h5>Audible</h5>
+                        <p>Listen to Books & Original
+                            Audio Performances</p>
+                    </div>
+                    <div>
+
+                        <h5>Shopbop</h5>
+                        <p>Designer
+                            Fashion Brands</p>
+                    </div>
+                    <div>
+
+                        <h5>Neighbors App</h5>
+                        <p>Real-Time Crime
+                            & Safety Alerts</p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+
+                        <h5>ACX</h5>
+                        <p>Audiobook Publishing
+                            Made Easy</p>
+                    </div>
+                    <div>
+                        <h5>Box Office Mojo</h5>
+                        <p>Find Movie
+                            Box Office Data</p>
+                    </div>
+                    <div>
+
+                        <h5>Woot!</h5>
+                        <p>Deals and
+                            Shenanigans</p>
+                    </div>
+                    <div>
+
+                        <h5>PakKart Subscription Boxes</h5>
+                        <p>Top subscription boxes – right to your door</p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+
+                        <h5>Sell on PakKart</h5>
+                        <p>Start a Selling Account</p>
+                    </div>
+                    <div>
+
+                        <h5>Goodreads</h5>
+                        <p>Book reviews
+                            & recommendations</p>
+                    </div>
+                    <div>
+
+                        <h5>Zappos</h5>
+                        <p>Shoes &
+                            Clothing</p>
+                    </div>
+                    <div>
+
+                        <h5>PillPack</h5>
+                        <p>Pharmacy Simplified</p>
+                    </div>
+                </div>
+                <div class="footer-content-con flex">
+                    <div>
+
+                        <h5>Veeqo</h5>
+                        <p>Shipping Software
+                            Inventory Management</p>
+                    </div>
+                    <div>
+
+                        <h5>IMDb</h5>
+                        <p>Movies, TV
+                            & Celebrities</p>
+                    </div>
+                    <div>
+
+                        <h5>Ring</h5>
+                        <p>Smart Home
+                            Security Systems</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright flex">
+            <h4>Made with &lt;3</h4>
+            <h4>All &copy; rigths reserved</h4>
+            <h4>Developed by Hamid, Talha and Areesha</h4>
+        </div>
+
+    </footer>
+    <script src="products.js"></script>
+    <script src="shop.js"></script>
+     <script src="common.js"></script>
+     <script src="commonSearch.js"></script>
+</body>
+
+</html>

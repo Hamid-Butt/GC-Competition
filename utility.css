@@ -1,0 +1,17 @@
+.flex{
+    display: flex;
+}
+.btn{
+    cursor: pointer;
+    transition: font-size 0.3s ease;
+}
+.btn:hover{
+    font-weight: bold;
+}
+
+.hide{
+    height: 0px;
+}
+.bold{
+    font-weight: bold;
+}
