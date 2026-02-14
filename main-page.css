@@ -8,6 +8,7 @@
 
 body {
     background-color: rgb(218, 216, 216);
+    overflow-x: hidden;
     
 }
 nav {
@@ -42,6 +43,13 @@ nav {
 .logo {
     width: 275px;
     height: 105px;
+}
+.logo  div{
+    width: 275px;
+    height: 100%;
+    background-image: url("assets/nav/logo.png");
+   background-size: contain;
+   background-repeat: no-repeat;
 }
 
 .nav-input {
@@ -679,11 +687,16 @@ nav {
 .upper-footer-container ul {
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     gap: 10px;
     font-size: 14px;
     color: #DDDDDD;
 }
-
+.upper-footer-container ul>li:first-child{
+    font-size: 16px;
+     font-weight: bold;
+      color: white;
+}
 .footer-social-con {
     border-top: 1px solid #3a4553;
 }
@@ -697,7 +710,9 @@ nav {
     position: relative;
     left: -35px;
 }
-
+.footer-social > img{
+    height: 70px;
+}
 .footer-social-media {
     width: 180px;
     height: 50px;
@@ -740,17 +755,22 @@ nav {
 .footer-content-con {
     font-size: 12px;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
 }
 
 .footer-content-con div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 125px;
     color: #E0E0E0;
     text-align: center;
 }
-
-.footer-content-con div h5 {
+.footer-content-con > div > div{
     color: #DDDDDD;
+    font-weight: bold;
     font-size: 12px;
 }
 
@@ -771,3 +791,7 @@ nav {
     align-items: center;
     gap: 100px;
 }
+
+
+
+
